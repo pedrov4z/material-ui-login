@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import {
-  Container,
   Typography,
   Paper,
   Box,
@@ -14,9 +13,14 @@ import {
   FormControlLabel,
   Grid,
   Hidden,
+  FormControl,
+  OutlinedInput,
+  InputLabel,
+  InputAdornment,
+  IconButton,
 } from '@material-ui/core'
 
-import { ExitToApp } from '@material-ui/icons'
+import { ExitToApp, Visibility, VisibilityOff } from '@material-ui/icons'
 
 import WLSlogo from '../../assets/images/logo-wls.png'
 import NotebookImg from '../../assets/images/notebook.png'
@@ -25,6 +29,12 @@ import useStyles from './styles'
 
 const Login: React.FC = () => {
   const classes = useStyles()
+
+  const [passwordVisible, setPasswordVisible] = useState(false)
+
+  function togglePasswordVisibility() {
+    setPasswordVisible(!passwordVisible)
+  }
 
   return (
     <Grid container>
@@ -57,35 +67,39 @@ const Login: React.FC = () => {
                 <ExitToApp />
               </Avatar>
               <Typography className={classes.titleText} variant="h4">
-                Login
+                Fazer Login
               </Typography>
             </Box>
 
             <Box className={classes.loginForm}>
               <TextField label="E-mail" variant="outlined" />
-              <TextField
-                label="Senha"
-                variant="outlined"
-                type="password"
-                className={classes.passwordInput}
-              />
-              <Grid container alignItems="center" justify="center">
-                <Grid item xs={12} sm={8}>
-                  <FormGroup>
-                    <FormControlLabel
-                      control={<Switch color="primary" />}
-                      label="Lembrar-me"
-                    />
-                  </FormGroup>
-                </Grid>
-                <Grid item xs={12} sm={4} justify="center">
-                  <Link>Esqueci minha senha</Link>
-                </Grid>
-              </Grid>
+              <FormControl className={classes.passwordInput} variant="outlined">
+                <InputLabel>Senha</InputLabel>
+                <OutlinedInput
+                  type={passwordVisible ? 'text' : 'password'}
+                  labelWidth={45}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton onClick={togglePasswordVisibility}>
+                        {passwordVisible ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+              <Box className={classes.psswdOptions}>
+                <FormGroup className={classes.switchContainer}>
+                  <FormControlLabel
+                    control={<Switch color="primary" />}
+                    label="Lembrar-me"
+                  />
+                </FormGroup>
+                <Link>Esqueci minha senha</Link>
+              </Box>
             </Box>
 
             <Button variant="contained" color="primary">
-              Fazer login
+              Entrar
             </Button>
 
             <Link className={classes.loginOptions}>Não tenho cadastro</Link>

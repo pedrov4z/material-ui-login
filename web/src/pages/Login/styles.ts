@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
   bannerCard: {
     height: '90%',
     minHeight: '400px',
-    maxHeight: '1000px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -26,12 +25,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     height: '90%',
     minHeight: '400px',
-    maxHeight: '1000px',
     width: '90%',
     maxWidth: '500px',
     flexDirection: 'column',
     justifyContent: 'space-around',
-    padding: theme.spacing(5),
+    padding: theme.spacing(5)
   },
 
   title: {
@@ -51,8 +49,16 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
 
-  psswdResetLink: {
-    alignSelf: 'flex-end'
+  psswdOptions: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap'
+  },
+
+  switchContainer: {
+    display: 'flex',
+    flexWrap: 'wrap'
   },
 
   loginOptions: {
