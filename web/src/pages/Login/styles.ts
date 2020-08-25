@@ -9,10 +9,14 @@ const useStyles = makeStyles((theme) => ({
   },
 
   loginCard: {
-    width: '80%',
+    width: '90%',
+    maxWidth: '450px',
     height: '80%',
+    minHeight: '400px',
+    maxHeight: '600px',
     display: 'flex',
     flexDirection: 'column',
+    flexBasis: '100%',
     justifyContent: 'space-around',
     padding: theme.spacing(5),
   },
