@@ -40,6 +40,7 @@ const Login: React.FC = () => {
           <TextField
             label="Senha"
             variant="outlined"
+            type="password"
             className={classes.passwordInput}
           />
           <Box className={classes.loginOptions}>
@@ -52,7 +53,7 @@ const Login: React.FC = () => {
           Fazer login
         </Button>
 
-        <Link>Não tenho cadastro</Link>
+        <Link className={classes.signUp}>Não tenho cadastro</Link>
       </Paper>
     </Container>
   )
