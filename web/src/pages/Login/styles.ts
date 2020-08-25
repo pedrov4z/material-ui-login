@@ -1,22 +1,35 @@
 import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
-  loginPage: {
+  screenSection: {
     height: '100vh',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly'
+  },
+
+  bannerCard: {
+    height: '90%',
+    minHeight: '400px',
+    maxHeight: '1000px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-evenly'
+  },
+
+  banner: {
+    width: '80%'
   },
 
   loginCard: {
-    width: '90%',
-    maxWidth: '450px',
-    height: '80%',
-    minHeight: '400px',
-    maxHeight: '600px',
     display: 'flex',
+    height: '90%',
+    minHeight: '400px',
+    maxHeight: '1000px',
+    width: '90%',
+    maxWidth: '500px',
     flexDirection: 'column',
-    flexBasis: '100%',
     justifyContent: 'space-around',
     padding: theme.spacing(5),
   },
@@ -45,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   loginOptions: {
     alignSelf: 'center',
     marginTop: theme.spacing(1)
-  }
+  },
 }))
 
 export default useStyles
