@@ -34,20 +34,17 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column'
   },
 
-  emailInput: {},
-
   passwordInput: {
     marginTop: theme.spacing(1),
   },
 
-  loginOptions: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  psswdResetLink: {
+    alignSelf: 'flex-end'
   },
 
-  signUp: {
-    alignSelf: 'center'
+  loginOptions: {
+    alignSelf: 'center',
+    marginTop: theme.spacing(1)
   }
 }))
 

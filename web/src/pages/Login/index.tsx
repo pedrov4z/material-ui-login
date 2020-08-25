@@ -10,6 +10,8 @@ import {
   Avatar,
   Switch,
   Link,
+  FormGroup,
+  FormControlLabel,
 } from '@material-ui/core'
 
 import { ExitToApp } from '@material-ui/icons'
@@ -35,7 +37,6 @@ const Login: React.FC = () => {
           <TextField
             label="E-mail"
             variant="outlined"
-            className={classes.emailInput}
           />
           <TextField
             label="Senha"
@@ -43,17 +44,17 @@ const Login: React.FC = () => {
             type="password"
             className={classes.passwordInput}
           />
-          <Box className={classes.loginOptions}>
-            <Switch />
-            <Link>Esqueci minha senha</Link>
-          </Box>
+          <Link className={classes.psswdResetLink}>Esqueci minha senha</Link>
+          <FormGroup className={classes.loginOptions}>
+            <FormControlLabel control={<Switch color="primary" />} label="Lembrar-me" />
+          </FormGroup>
         </Box>
 
         <Button variant="contained" color="primary">
           Fazer login
         </Button>
 
-        <Link className={classes.signUp}>Não tenho cadastro</Link>
+        <Link className={classes.loginOptions}>Não tenho cadastro</Link>
       </Paper>
     </Container>
   )
