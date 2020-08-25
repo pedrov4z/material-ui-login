@@ -21,7 +21,7 @@ const Login: React.FC = () => {
 
   return (
     <Container className={classes.loginPage}>
-      <Paper elevation={3} className={classes.loginCard}>
+      <Paper className={classes.loginCard}>
         <Box className={classes.title}>
           <Avatar>
             <ExitToApp />
