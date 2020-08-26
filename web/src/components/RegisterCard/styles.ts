@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
 
   title: {
     display: 'flex',
+    alignItems: 'center'
   },
 
   titleText: {

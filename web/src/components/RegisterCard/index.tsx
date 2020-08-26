@@ -34,7 +34,7 @@ const RegisterCard: React.FC<LoginCardProps> = (props) => {
         <IconButton onClick={() => setLoginMode('login')}>
           <ArrowBack />
         </IconButton>
-        <Typography className={classes.titleText} variant="h4">
+        <Typography className={classes.titleText} variant="h5">
           Fazer Cadastro
         </Typography>
       </Box>
@@ -50,12 +50,12 @@ const RegisterCard: React.FC<LoginCardProps> = (props) => {
           >
             <FormControlLabel
               value="physical"
-              control={<Radio color="primary" />}
+              control={<Radio color="secondary" />}
               label="Pessoa Física"
             />
             <FormControlLabel
               value="juridical"
-              control={<Radio color="primary" />}
+              control={<Radio color="secondary" />}
               label="Pessoa Jurídica"
             />
           </RadioGroup>

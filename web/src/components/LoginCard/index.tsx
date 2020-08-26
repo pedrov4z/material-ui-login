@@ -58,7 +58,7 @@ const LoginCard: React.FC<LoginCardProps> = (props) => {
         <Box className={classes.psswdOptions}>
           <FormGroup className={classes.switchContainer}>
             <FormControlLabel
-              control={<Switch color="primary" />}
+              control={<Switch color="secondary" />}
               label="Lembrar-me"
             />
           </FormGroup>
