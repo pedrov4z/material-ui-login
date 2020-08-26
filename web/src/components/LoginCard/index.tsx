@@ -28,7 +28,7 @@ import PasswordReset from '../PasswordReset'
 const LoginCard: React.FC<LoginCardProps> = (props) => {
   const { setLoginMode, togglePasswordVisibility, passwordVisible } = props
 
-  const [modalOpen, setModalOpen] = useState(true)
+  const [modalOpen, setModalOpen] = useState(false)
 
   const classes = useStyles()
 
