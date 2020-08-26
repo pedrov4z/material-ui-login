@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 
-import { ThemeProvider, CssBaseline } from '@material-ui/core';
+import { ThemeProvider, CssBaseline } from '@material-ui/core'
 
-import Login from './pages/Login';
+import Login from './pages/Login'
 
-import theme from './assets/styles/theme';
+import theme from './assets/styles/theme'
 
 import './global.css'
 
@@ -14,7 +14,7 @@ function App() {
       <CssBaseline />
       <Login />
     </ThemeProvider>
-  );
+  )
 }
 
-export default App;
+export default App
