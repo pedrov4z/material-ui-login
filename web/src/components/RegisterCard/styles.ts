@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
   registerCard: {
     display: 'flex',
     height: '90%',
-    minHeight: '545px',
+    minHeight: '550px',
     width: '90%',
     maxWidth: '500px',
     flexDirection: 'column',

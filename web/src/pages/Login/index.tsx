@@ -27,47 +27,47 @@ const Login: React.FC = () => {
   }
 
   return (
-    <Grid container>
-      <Hidden smDown>
-        <Grid item md={7}>
-          <Box className={classes.screenSection}>
-            <Paper className={classes.bannerCard}>
-              {' '}
-              <img
-                className={classes.banner}
-                alt="WLS Sistemas"
-                src={WLSlogo}
-              />
-              <img
-                className={classes.banner}
-                src={NotebookImg}
-                alt="Tenha controle total de tudo o que realmente importa para
+      <Grid className={classes.loginPageContent} container>
+        <Hidden smDown>
+          <Grid item md={7}>
+            <Box className={classes.screenSection}>
+              <Paper className={classes.bannerCard}>
+                {' '}
+                <img
+                  className={classes.banner}
+                  alt="WLS Sistemas"
+                  src={WLSlogo}
+                />
+                <img
+                  className={classes.banner}
+                  src={NotebookImg}
+                  alt="Tenha controle total de tudo o que realmente importa para
                 fazer o seu negócio crescer e vender cada vez mais e melhor!"
+                />
+              </Paper>
+            </Box>
+          </Grid>
+        </Hidden>
+
+        <Grid item xs md={5}>
+          <Box className={classes.screenSection}>
+            {loginMode === 'login' && (
+              <LoginCard
+                setLoginMode={setLoginMode}
+                togglePasswordVisibility={togglePasswordVisibility}
+                passwordVisible={passwordVisible}
               />
-            </Paper>
+            )}
+            {loginMode === 'register' && (
+              <RegisterCard
+                setLoginMode={setLoginMode}
+                togglePasswordVisibility={togglePasswordVisibility}
+                passwordVisible={passwordVisible}
+              />
+            )}
           </Box>
         </Grid>
-      </Hidden>
-
-      <Grid item xs md={5}>
-        <Box className={classes.screenSection}>
-          {loginMode === 'login' && (
-            <LoginCard
-              setLoginMode={setLoginMode}
-              togglePasswordVisibility={togglePasswordVisibility}
-              passwordVisible={passwordVisible}
-            />
-          )}
-          {loginMode === 'register' && (
-            <RegisterCard
-              setLoginMode={setLoginMode}
-              togglePasswordVisibility={togglePasswordVisibility}
-              passwordVisible={passwordVisible}
-            />
-          )}
-        </Box>
       </Grid>
-    </Grid>
   )
 }
 
