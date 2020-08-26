@@ -8,6 +8,8 @@ import {
   TextField,
 } from '@material-ui/core'
 
+import NumberFormat from 'react-number-format'
+
 import { useRegistrationContext } from '../../../contexts/RegistrationContext'
 
 import useStyles from '../styles'
@@ -25,6 +27,12 @@ const StepOne: React.FC = () => {
     cnpj,
     setCnpj,
   } = useRegistrationContext()
+
+  const capitalize = (str: string, lower: boolean = false) =>
+    (lower ? str.toLowerCase() : str).replace(
+      /(?:^|\s|["'([{])+\S/g,
+      (match: string) => match.toUpperCase()
+    )
 
   return (
     <>
@@ -56,6 +64,9 @@ const StepOne: React.FC = () => {
           variant="outlined"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          onBlur={(e) => {
+            setName(capitalize(e.target.value))
+          }}
         />
       )}
       {legalPerson === 'juridical' && (
@@ -65,25 +76,36 @@ const StepOne: React.FC = () => {
           variant="outlined"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          onBlur={(e) => setName(capitalize(e.target.value))}
         />
       )}
 
       {legalPerson === 'physical' && (
-        <TextField
+        <NumberFormat
           className={classes.inputMT}
           label="CPF"
-          variant="outlined"
+          // error=""
           value={cpf}
           onChange={(e) => setCpf(e.target.value)}
+          // helperText=""
+          customInput={TextField}
+          variant="outlined"
+          format="###.###.###-##"
+          mask="_"
         />
       )}
       {legalPerson === 'juridical' && (
-        <TextField
+        <NumberFormat
           className={classes.inputMT}
           label="CNPJ"
-          variant="outlined"
+          // error=""
           value={cnpj}
           onChange={(e) => setCnpj(e.target.value)}
+          // helperText=""
+          customInput={TextField}
+          variant="outlined"
+          format="##.###.###/####-##"
+          mask="_"
         />
       )}
     </>
