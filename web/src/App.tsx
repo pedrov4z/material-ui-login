@@ -1,15 +1,19 @@
 import React from 'react';
 
-import CssBaseline from '@material-ui/core/CssBaseline'
+import { ThemeProvider, CssBaseline } from '@material-ui/core';
 
 import Login from './pages/Login';
 
+import theme from './assets/styles/theme';
+
+import './global.css'
+
 function App() {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <Login />
-    </>
+    </ThemeProvider>
   );
 }
 
