@@ -1,36 +1,26 @@
 import React, { useState } from 'react'
 
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
-import {
-  Typography,
-  Paper,
-  Box,
-  Avatar,
-  Switch,
-  Link,
-  FormGroup,
-  FormControlLabel,
-  Grid,
-  Hidden,
-  FormControl,
-  OutlinedInput,
-  InputLabel,
-  InputAdornment,
-  IconButton,
-} from '@material-ui/core'
-
-import { ExitToApp, Visibility, VisibilityOff } from '@material-ui/icons'
+import { Paper, Box, Grid, Hidden } from '@material-ui/core'
 
 import WLSlogo from '../../assets/images/logo-wls.png'
 import NotebookImg from '../../assets/images/notebook.png'
 
+import LoginCard from '../../components/LoginCard'
+import RegisterCard from '../../components/RegisterCard'
+
 import useStyles from './styles'
+
+export interface LoginCardProps {
+  setLoginMode: React.Dispatch<React.SetStateAction<string>>
+  togglePasswordVisibility(): void
+  passwordVisible: boolean
+}
 
 const Login: React.FC = () => {
   const classes = useStyles()
 
   const [passwordVisible, setPasswordVisible] = useState(false)
+  const [loginMode, setLoginMode] = useState('login')
 
   function togglePasswordVisibility() {
     setPasswordVisible(!passwordVisible)
@@ -61,49 +51,20 @@ const Login: React.FC = () => {
 
       <Grid item xs md={5}>
         <Box className={classes.screenSection}>
-          <Paper className={classes.loginCard}>
-            <Box className={classes.title}>
-              <Avatar>
-                <ExitToApp />
-              </Avatar>
-              <Typography className={classes.titleText} variant="h4">
-                Fazer Login
-              </Typography>
-            </Box>
-
-            <Box className={classes.loginForm}>
-              <TextField label="E-mail" variant="outlined" />
-              <FormControl className={classes.passwordInput} variant="outlined">
-                <InputLabel>Senha</InputLabel>
-                <OutlinedInput
-                  type={passwordVisible ? 'text' : 'password'}
-                  labelWidth={45}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton onClick={togglePasswordVisibility}>
-                        {passwordVisible ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                />
-              </FormControl>
-              <Box className={classes.psswdOptions}>
-                <FormGroup className={classes.switchContainer}>
-                  <FormControlLabel
-                    control={<Switch color="primary" />}
-                    label="Lembrar-me"
-                  />
-                </FormGroup>
-                <Link>Esqueci minha senha</Link>
-              </Box>
-            </Box>
-
-            <Button variant="contained" color="primary">
-              Entrar
-            </Button>
-
-            <Link className={classes.loginOptions}>Não tenho cadastro</Link>
-          </Paper>
+          {loginMode === 'login' && (
+            <LoginCard
+              setLoginMode={setLoginMode}
+              togglePasswordVisibility={togglePasswordVisibility}
+              passwordVisible={passwordVisible}
+            />
+          )}
+          {loginMode === 'register' && (
+            <RegisterCard
+              setLoginMode={setLoginMode}
+              togglePasswordVisibility={togglePasswordVisibility}
+              passwordVisible={passwordVisible}
+            />
+          )}
         </Box>
       </Grid>
     </Grid>

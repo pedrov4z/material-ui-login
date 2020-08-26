@@ -5,12 +5,12 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
   },
 
   bannerCard: {
     height: '90%',
-    minHeight: '400px',
+    minHeight: '545px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -20,51 +20,7 @@ const useStyles = makeStyles((theme) => ({
   banner: {
     width: '80%'
   },
-
-  loginCard: {
-    display: 'flex',
-    height: '90%',
-    minHeight: '400px',
-    width: '90%',
-    maxWidth: '500px',
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    padding: theme.spacing(5)
-  },
-
-  title: {
-    display: 'flex',
-  },
-
-  titleText: {
-    marginLeft: theme.spacing(1),
-  },
-
-  loginForm: {
-    display: 'flex',
-    flexDirection: 'column'
-  },
-
-  passwordInput: {
-    marginTop: theme.spacing(1),
-  },
-
-  psswdOptions: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap'
-  },
-
-  switchContainer: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
-
-  loginOptions: {
-    alignSelf: 'center',
-    marginTop: theme.spacing(1)
-  },
+  
 }))
 
 export default useStyles
