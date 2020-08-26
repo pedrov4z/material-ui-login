@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Paper,
   Box,
@@ -15,6 +15,7 @@ import {
   Switch,
   Link,
   Button,
+  Modal,
 } from '@material-ui/core'
 
 import { ExitToApp, VisibilityOff, Visibility } from '@material-ui/icons'
@@ -22,9 +23,12 @@ import { ExitToApp, VisibilityOff, Visibility } from '@material-ui/icons'
 import { LoginCardProps } from '../../pages/Login'
 
 import useStyles from './styles'
+import PasswordReset from '../PasswordReset'
 
 const LoginCard: React.FC<LoginCardProps> = (props) => {
   const { setLoginMode, togglePasswordVisibility, passwordVisible } = props
+
+  const [modalOpen, setModalOpen] = useState(true)
 
   const classes = useStyles()
 
@@ -62,7 +66,12 @@ const LoginCard: React.FC<LoginCardProps> = (props) => {
               label="Lembrar-me"
             />
           </FormGroup>
-          <Link>Esqueci minha senha</Link>
+          <Link
+            onClick={() => setModalOpen(true)}
+            style={{ cursor: 'pointer' }}
+          >
+            Esqueci minha senha
+          </Link>
         </Box>
       </Box>
 
@@ -70,7 +79,23 @@ const LoginCard: React.FC<LoginCardProps> = (props) => {
         Entrar
       </Button>
 
-      <Link onClick={() => setLoginMode('register')} className={classes.loginOptions}>Não tenho cadastro</Link>
+      <Link
+        onClick={() => setLoginMode('register')}
+        className={classes.loginOptions}
+      >
+        Não tenho cadastro
+      </Link>
+
+      <Modal
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        open={modalOpen}
+      >
+        <PasswordReset setModalOpen={setModalOpen} />
+      </Modal>
     </Paper>
   )
 }
