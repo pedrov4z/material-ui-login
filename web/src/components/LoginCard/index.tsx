@@ -22,13 +22,19 @@ import { ExitToApp, VisibilityOff, Visibility } from '@material-ui/icons'
 
 import { LoginCardProps } from '../../pages/Login'
 
-import useStyles from './styles'
 import PasswordReset from '../PasswordReset'
 
+import useStyles from './styles'
+
 const LoginCard: React.FC<LoginCardProps> = (props) => {
-  const { setLoginMode, togglePasswordVisibility, passwordVisible } = props
+  const { setLoginMode } = props
 
   const [modalOpen, setModalOpen] = useState(false)
+
+  const [passwordVisible, setPasswordVisible] = useState(false)
+  function togglePasswordVisibility() {
+    setPasswordVisible(!passwordVisible)
+  }
 
   const classes = useStyles()
 
