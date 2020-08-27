@@ -30,7 +30,12 @@ const PasswordReset: React.FC<PasswordResetProps> = ({ setModalOpen }) => {
         Digite seu e-mail cadastrado para receber o endereço de recuperação de
         senha.
       </Typography>
-      <TextField type="email" label="E-mail" />
+      <TextField
+        error
+        helperText="Funcionalidade em construção"
+        type="email"
+        label="E-mail"
+      />
       <Button variant="contained" color="primary">
         Confirmar
       </Button>
