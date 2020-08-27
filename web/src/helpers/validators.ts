@@ -1,6 +1,7 @@
 export function validateName(name: string) {
   if (name.length === 0) return 'Campo obrigatório'
-  else if (name.length <= 3) return 'Muito curto'
+  else if (name.length < 3) return 'Deve conter ao menos 3 caracteres'
+  else if (name.length > 20) return 'Deve conter no máximo 20 caracteres'
   else return ''
 }
 
@@ -35,7 +36,8 @@ export function validatePassword(password: string) {
   else if(!(password.match(upperCaseLetters))) return 'Deve conter ao menos uma letra maiúscula'
   else if(!(password.match(numbers))) return 'Deve conter ao menos um número'
   else if(!(password.match(specialCharacters))) return 'Deve conter ao menos um caractere especial'
-  else if(password.length < 8) return 'Deve conter ao menos 8 caracteres'
+  else if(password.length < 6) return 'Deve conter ao menos 6 caracteres'
+  else if(password.length > 20) return 'Deve conter no máximo 20 caracteres'
   else return ''
 }
 
