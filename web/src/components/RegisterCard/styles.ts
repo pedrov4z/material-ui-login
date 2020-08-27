@@ -12,13 +12,49 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(5),
   },
 
+  titleBar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+  },
+
   title: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    flexWrap: 'wrap',
   },
 
   titleText: {
     marginLeft: theme.spacing(1),
+  },
+
+  stepSelector: {
+    display: 'flex',
+    alignItems: 'center',
+    cursor: 'default'
+  },
+
+  stepSelectorItem: {
+    height: '30px',
+    width: '30px',
+    border: '1px solid gray',
+    borderRadius: '15px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    // cursor: 'pointer',
+  },
+
+  stepSelectorItemSelected: {
+    height: '30px',
+    width: '30px',
+    border: '1px solid gray',
+    borderRadius: '15px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    // cursor: 'pointer',
+    background: theme.palette.secondary.light,
   },
 
   registerForm: {
