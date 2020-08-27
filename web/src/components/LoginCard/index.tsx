@@ -49,7 +49,7 @@ const LoginCard: React.FC<LoginCardProps> = (props) => {
 
   const handleLoginSubmit = () => {
     resetErrors()
-    signIn(email, password)
+    signIn(email, password, rememberMe)
   }
 
   return (

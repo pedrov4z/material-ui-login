@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useState, useEffect } from 'react'
 
 import api from '../services/api'
 
@@ -8,7 +8,7 @@ interface AuthContextData {
   user: user | null
   emailError: string
   passwordError: string
-  signIn(email: string, password: string): Promise<void>
+  signIn(email: string, password: string, rememberMe: Boolean): Promise<void>
   signOut(): void
   resetErrors(): void
 }
@@ -29,6 +29,21 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
 
+  useEffect(() => {
+    if(localStorage.getItem('rememberMe')) {
+      const id = parseInt(localStorage.getItem('userID') as string)
+      const email = localStorage.getItem('userEmail')
+      const name = localStorage.getItem('userName')
+      const role = localStorage.getItem('role')
+      const token = localStorage.getItem('token')
+      
+      setUser({
+        id, email, name, role
+      } as user)
+      setToken(token as string)
+    }
+  }, [])
+
   function resetErrors() {
     setEmailError('')
     setPasswordError('')
@@ -39,7 +54,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     setUser(null)
   }
 
-  async function signIn(email: string, password: string) {
+  async function signIn(email: string, password: string, rememberMe: Boolean) {
     await api
       .post('users/login', {
         email,
@@ -47,8 +62,19 @@ export const AuthProvider: React.FC = ({ children }) => {
       })
       .then((response) => {
         if (response.status === 200) {
-          setUser(response.data.user)
-          setToken(response.data.token)
+          const { user, token } = response.data
+          if(rememberMe) {
+            localStorage.setItem('rememberMe', 'yes, please :)')
+            if (user !== null) {
+              localStorage.setItem('userID', user.id.toString())
+              localStorage.setItem('userEmail', user.email.toString())
+              localStorage.setItem('userName', user.name.toString())
+              localStorage.setItem('userRole', user.role.toString())
+            }
+            localStorage.setItem('token', token)
+          }
+          setUser(user)
+          setToken(token)
         }
       })
       .catch((error) => {
