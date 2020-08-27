@@ -1,5 +1,7 @@
 import React, { useState, createContext, ReactNode, useContext } from 'react'
 
+import api from '../services/api'
+
 type RegistrationContextData = {
   legalPerson: string
   name: string
@@ -31,6 +33,8 @@ type RegistrationContextData = {
   setPasswordError: React.Dispatch<React.SetStateAction<string>>
   setPasswordConfirmation: React.Dispatch<React.SetStateAction<string>>
   setPasswordConfirmationError: React.Dispatch<React.SetStateAction<string>>
+
+  sendNewUser(): Promise<void>
 }
 
 interface Props {
@@ -56,35 +60,17 @@ const RegistrationProvider: React.FC<Props> = ({ children }) => {
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
   const [passwordConfirmationError, setPasswordConfirmationError] = useState('')
 
-  /* const addTodo = (todo: ToDo) => {
-    const { id, concluido, titulo, descricao } = todo
-
-    const newTodo = {
-      id,
-      concluido,
-      titulo,
-      descricao
-    }
-    setTodos([...todos, newTodo])
+  async function sendNewUser() {
+    api.post("users", {
+      email,
+      password,
+      name
+    }).then((response) => {
+      if (response.status === 200) window.location.reload()
+    }).catch((error) => {
+      alert(error)
+    })
   }
-
-  const changeTodo = (todo: ToDo) => {
-    let currentTodos = todos;
-
-    let foundIndex = currentTodos.findIndex(x => x.id === todo.id);
-
-    currentTodos[foundIndex] = todo;
-
-    setTodos(currentTodos)
-  }
-
-  const removeTodo = (todo: ToDo["id"]) => {
-    let currentTodos = todos;
-
-    const newPointer = currentTodos.filter(x => x.id !== todo);
-
-    setTodos(newPointer)
-  } */
 
   const values = {
     legalPerson,
@@ -117,6 +103,7 @@ const RegistrationProvider: React.FC<Props> = ({ children }) => {
     setPasswordConfirmation,
     passwordConfirmationError,
     setPasswordConfirmationError,
+    sendNewUser,
   }
 
   return (
@@ -161,6 +148,7 @@ export function useRegistrationContext() {
     setPasswordConfirmation,
     passwordConfirmationError,
     setPasswordConfirmationError,
+    sendNewUser,
   } = context
   return {
     legalPerson,
@@ -193,6 +181,7 @@ export function useRegistrationContext() {
     setPasswordConfirmation,
     passwordConfirmationError,
     setPasswordConfirmationError,
+    sendNewUser,
   }
 }
 

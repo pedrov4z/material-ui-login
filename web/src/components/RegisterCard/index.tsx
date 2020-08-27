@@ -34,6 +34,8 @@ const RegisterCard: React.FC<LoginCardProps> = (props) => {
     passwordError,
     passwordConfirmation,
     passwordConfirmationError,
+
+    sendNewUser,
   } = useRegistrationContext()
 
   const classes = useStyles()
@@ -42,13 +44,14 @@ const RegisterCard: React.FC<LoginCardProps> = (props) => {
     alert('Preencha todos os campos corretamente')
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (
       password &&
       passwordError === '' &&
       passwordConfirmation &&
       passwordConfirmationError === ''
     ) {
+      sendNewUser()
     } else defaultAlert()
   }
 
