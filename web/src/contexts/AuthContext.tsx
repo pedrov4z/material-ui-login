@@ -5,7 +5,7 @@ import api from '../services/api'
 interface AuthContextData {
   signed: boolean
   token: string
-  user: object | null
+  user: user | null
   emailError: string
   passwordError: string
   signIn(email: string, password: string): Promise<void>
@@ -13,11 +13,19 @@ interface AuthContextData {
   resetErrors(): void
 }
 
+interface user {
+  id: number
+  email: string
+  password: string
+  name: string
+  role: string
+}
+
 const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [token, setToken] = useState('')
-  const [user, setUser] = useState<object | null>(null)
+  const [user, setUser] = useState<user | null>(null)
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
 
