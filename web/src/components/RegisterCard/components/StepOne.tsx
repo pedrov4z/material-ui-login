@@ -12,6 +12,8 @@ import NumberFormat from 'react-number-format'
 
 import { useRegistrationContext } from '../../../contexts/RegistrationContext'
 
+import { validateName, validateCpf, validateCnpj } from '../../../helpers/validators'
+
 import useStyles from '../styles'
 
 const StepOne: React.FC = () => {
@@ -22,10 +24,16 @@ const StepOne: React.FC = () => {
     setLegalPerson,
     name,
     setName,
+    nameError,
+    setNameError,
     cpf,
     setCpf,
+    cpfError,
+    setCpfError,
     cnpj,
     setCnpj,
+    cnpjError,
+    setCnpjError,
   } = useRegistrationContext()
 
   const capitalize = (str: string, lower: boolean = false) =>
@@ -61,22 +69,30 @@ const StepOne: React.FC = () => {
         <TextField
           className={classes.inputMT}
           label="Nome completo"
+          error={nameError !== ''}
           variant="outlined"
           value={name}
           onChange={(e) => setName(e.target.value)}
           onBlur={(e) => {
             setName(capitalize(e.target.value))
+            setNameError(validateName(e.target.value))
           }}
+          helperText={nameError}
         />
       )}
       {legalPerson === 'juridical' && (
         <TextField
           className={classes.inputMT}
           label="Razão social"
+          error={nameError !== ''}
           variant="outlined"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          onBlur={(e) => setName(capitalize(e.target.value))}
+          onBlur={(e) => {
+            setName(capitalize(e.target.value))
+            setNameError(validateName(e.target.value))
+          }}
+          helperText={nameError}
         />
       )}
 
@@ -84,10 +100,11 @@ const StepOne: React.FC = () => {
         <NumberFormat
           className={classes.inputMT}
           label="CPF"
-          // error=""
+          error={cpfError !== ''}
           value={cpf}
           onChange={(e) => setCpf(e.target.value)}
-          // helperText=""
+          onBlur={(e) => setCpfError(validateCpf(e.target.value))}
+          helperText={cpfError}
           customInput={TextField}
           variant="outlined"
           format="###.###.###-##"
@@ -98,10 +115,11 @@ const StepOne: React.FC = () => {
         <NumberFormat
           className={classes.inputMT}
           label="CNPJ"
-          // error=""
+          error={cnpjError !== ''}
           value={cnpj}
           onChange={(e) => setCnpj(e.target.value)}
-          // helperText=""
+          onBlur={(e) => setCnpjError(validateCnpj(e.target.value))}
+          helperText={cnpjError}
           customInput={TextField}
           variant="outlined"
           format="##.###.###/####-##"

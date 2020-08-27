@@ -7,11 +7,17 @@ import {
   InputAdornment,
   IconButton,
   TextField,
+  FormHelperText,
 } from '@material-ui/core'
 
 import { VisibilityOff, Visibility } from '@material-ui/icons'
 
 import { useRegistrationContext } from '../../../contexts/RegistrationContext'
+
+import {
+  validatePassword,
+  validatePasswordConfirmation,
+} from '../../../helpers/validators'
 
 import useStyles from '../styles'
 
@@ -26,8 +32,12 @@ const StepThree: React.FC = (props) => {
   const {
     password,
     setPassword,
+    passwordError,
+    setPasswordError,
     passwordConfirmation,
     setPasswordConfirmation,
+    passwordConfirmationError,
+    setPasswordConfirmationError,
   } = useRegistrationContext()
 
   return (
@@ -45,16 +55,26 @@ const StepThree: React.FC = (props) => {
             </InputAdornment>
           }
           value={password}
+          error={passwordError !== ''}
           onChange={(e) => setPassword(e.target.value)}
+          onBlur={(e) => setPasswordError(validatePassword(e.target.value))}
         />
+        <FormHelperText>{passwordError}</FormHelperText>
       </FormControl>
       <TextField
         className={classes.inputMT}
         label="Confirmar senha"
+        error={passwordConfirmationError !== ''}
         type="password"
         variant="outlined"
         value={passwordConfirmation}
         onChange={(e) => setPasswordConfirmation(e.target.value)}
+        onBlur={(e) =>
+          setPasswordConfirmationError(
+            validatePasswordConfirmation(e.target.value, password)
+          )
+        }
+        helperText={passwordConfirmationError}
       />
     </>
   )
