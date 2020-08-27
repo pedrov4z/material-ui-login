@@ -2,7 +2,9 @@ import React from 'react'
 
 import { ThemeProvider, CssBaseline } from '@material-ui/core'
 
-import Login from './pages/Login'
+import Routes from './routes'
+
+import { AuthProvider } from './contexts/AuthContext'
 
 import theme from './assets/styles/theme'
 
@@ -12,7 +14,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Login />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </ThemeProvider>
   )
 }
