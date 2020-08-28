@@ -49,7 +49,7 @@ const ClientsList: React.FC<ClientsListProps> = ({ clients }) => {
       {expanded && (
         <Paper className={classes.clientsPaper}>
           <Grid container spacing={3}>
-            {clients.map((client: any) => (
+            {clients.length > 0 && clients.map((client: any) => (
               <Grid item xs={12} sm={6} key={client.id}>
                 <Paper className={classes.clientPaper}>
                   <Box>
