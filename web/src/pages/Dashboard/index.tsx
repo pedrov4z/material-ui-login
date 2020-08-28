@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
-import { Paper, Container, Typography, Link, Box } from '@material-ui/core'
+import {
+  Paper,
+  Container,
+  Typography,
+  Link,
+  Box,
+  Grid,
+} from '@material-ui/core'
 
 import { useAuthContext } from '../../contexts/AuthContext'
 
@@ -31,19 +38,21 @@ const Dashboard: React.FC = () => {
   }, [user])
 
   return (
-    <Container className={classes.dashboardPageContainer}>
-      <Paper className={classes.paper}>
-        <Box className={classes.titleBar}>
-          <Typography variant="h4">Olá, {user.name}</Typography>
+    <Grid container className={classes.dashboardPageContainer}>
+      <Grid item xs={12} sm={8}>
+        <Paper className={classes.paper}>
+          <Box className={classes.titleBar}>
+            <Typography variant="h4">Olá, {user.name}</Typography>
 
-          <Link className={classes.link} onClick={signOut}>
-            Sair
-          </Link>
-        </Box>
+            <Link className={classes.link} onClick={signOut}>
+              Sair
+            </Link>
+          </Box>
 
-        {user.role === "ADMIN" && <ClientsList clients={clients} />}
-      </Paper>
-    </Container>
+          {user.role === 'ADMIN' && <ClientsList clients={clients} />}
+        </Paper>
+      </Grid>
+    </Grid>
   )
 }
 

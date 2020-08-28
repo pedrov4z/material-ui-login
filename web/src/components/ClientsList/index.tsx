@@ -50,24 +50,24 @@ const ClientsList: React.FC<ClientsListProps> = ({ clients }) => {
         <Paper className={classes.clientsPaper}>
           <Grid container spacing={3}>
             {clients.length > 0 && clients.map((client: any) => (
-              <Grid item xs={12} sm={6} key={client.id}>
+              <Grid item xs={12} /* md={6} lg={4}  */key={client.id} style={{display: 'flex', justifyContent: 'center', width: '100%'}} >
                 <Paper className={classes.clientPaper}>
                   <Box>
                     <Avatar />
                   </Box>
                   <Box className={classes.profileInfo}>
                     <Box className={classes.typographyWithIcon}>
-                      <PermIdentity />
+                      <PermIdentity className={classes.typographyIcon} />
                       <Typography variant="h6">{client.name}</Typography>
                     </Box>
                     <Box className={classes.typographyWithIcon}>
-                      <Domain />
+                      <Domain className={classes.typographyIcon} />
                       <Typography>{client.cnpj}</Typography>
                     </Box>
 
                     {client.contactInformation.map((info: any) => (
                       <Box className={classes.typographyWithIcon}>
-                        <ContactPhone />
+                        <ContactPhone className={classes.typographyIcon} />
                         <Typography>{info.cellphone}</Typography>
                       </Box>
                     ))}

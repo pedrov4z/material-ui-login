@@ -4,13 +4,11 @@ const useStyles = makeStyles((theme) => ({
   dashboardPageContainer: {
     minHeight: '100%',
     display: 'flex',
-    alignItems: 'center',
     justifyContent: 'center',
-    padding: theme.spacing(2),
   },
 
   paper: {
-    width: '50%',
+    width: '100%',
     padding: theme.spacing(5),
     display: 'flex',
     justifyContent: 'center',
@@ -24,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
+    wordBreak: 'break-all',
   },
 
   link: {
