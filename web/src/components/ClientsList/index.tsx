@@ -31,7 +31,7 @@ interface client {
 }
 
 const ClientsList: React.FC<ClientsListProps> = ({ clients }) => {
-  const [expanded, setExpanded] = useState(true)
+  const [expanded, setExpanded] = useState(false)
 
   const classes = useStyles()
 
@@ -42,7 +42,7 @@ const ClientsList: React.FC<ClientsListProps> = ({ clients }) => {
   return (
     <Box mt={3}>
       <Box onClick={toggleExpansion} className={classes.titleBar}>
-        <Typography variant="h5">Clientes</Typography>
+        <Typography variant="h5">Clientes {clients.length > 0 && `(${clients.length})`}</Typography>
         <IconButton>{expanded ? <ExpandLess /> : <ExpandMore />}</IconButton>
       </Box>
 

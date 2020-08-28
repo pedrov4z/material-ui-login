@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
   loginPageContent: {
     height: '100%',
   },
-  
+
   screenSection: {
     height: '100%',
     display: 'flex',
@@ -17,13 +17,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
   },
 
   banner: {
-    width: '80%'
+    width: '80%',
   },
-  
 }))
 
 export default useStyles

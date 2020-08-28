@@ -6,10 +6,16 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'space-between',
     cursor: 'pointer',
+    transition: 'background-color .2s',
+    padding: theme.spacing(1),
+    border: '1px #e8e8e8 solid',
+    borderRadius: '5px',
+    '&:hover': {
+      background: '#e8e8e8',
+    },
   },
 
   clientsPaper: {
-    marginTop: theme.spacing(2),
     padding: theme.spacing(2),
     minWidth: '240px',
   },
@@ -19,6 +25,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     width: '100%',
     padding: theme.spacing(2),
+    transition: 'background-color .5s',
+    borderRadius: '5px',
+    '&:hover': {
+      background: '#e8e8e8',
+    },
   },
 
   profileInfo: {

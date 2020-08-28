@@ -9,9 +9,9 @@ const useStyles = makeStyles((theme) => ({
 
   paper: {
     width: '100%',
+    minHeight: '100%',
     padding: theme.spacing(5),
     display: 'flex',
-    justifyContent: 'center',
     flexDirection: 'column',
   },
 
