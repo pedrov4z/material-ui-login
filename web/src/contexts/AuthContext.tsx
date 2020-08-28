@@ -5,7 +5,7 @@ import api from '../services/api'
 interface AuthContextData {
   signed: boolean
   token: string
-  user: user | null
+  user: user
   emailError: string
   passwordError: string
   signIn(email: string, password: string, rememberMe: Boolean): Promise<void>
@@ -25,17 +25,19 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [token, setToken] = useState('')
-  const [user, setUser] = useState<user | null>(null)
+  const [user, setUser] = useState<user>({} as user)
+  const [signed, setSigned] = useState(false)
+
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
 
   useEffect(() => {
-    if(localStorage.getItem('rememberMe')) {
+    if(localStorage.getItem('userID')) {
       const id = parseInt(localStorage.getItem('userID') as string)
       const email = localStorage.getItem('userEmail')
       const name = localStorage.getItem('userName')
-      const role = localStorage.getItem('role')
-      const token = localStorage.getItem('token')
+      const role = localStorage.getItem('userRole')
+      const token = localStorage.getItem('userToken')
 
       api.defaults.headers.Authorization = `Bearer ${token}`
       
@@ -43,6 +45,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         id, email, name, role
       } as user)
       setToken(token as string)
+      setSigned(true)
     }
   }, [])
 
@@ -53,7 +56,8 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   function signOut() {
     localStorage.clear()
-    window.location.reload()
+    api.defaults.headers.Authorization = undefined
+    setSigned(false)
   }
 
   async function signIn(email: string, password: string, rememberMe: Boolean) {
@@ -66,18 +70,18 @@ export const AuthProvider: React.FC = ({ children }) => {
         if (response.status === 200) {
           const { user, token } = response.data
           if(rememberMe) {
-            localStorage.setItem('rememberMe', 'yes, please :)')
             if (user !== null) {
               localStorage.setItem('userID', user.id.toString())
               localStorage.setItem('userEmail', user.email.toString())
               localStorage.setItem('userName', user.name.toString())
               localStorage.setItem('userRole', user.role.toString())
             }
-            localStorage.setItem('token', token)
+            localStorage.setItem('userToken', token)
           }
           api.defaults.headers.Authorization = `Bearer ${token}`
           setUser(user)
           setToken(token)
+          setSigned(true)
         }
       })
       .catch((error) => {
@@ -97,7 +101,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        signed: !!user,
+        signed,
         token,
         user,
         emailError,

@@ -16,14 +16,14 @@ interface client {
 }
 
 const Dashboard: React.FC = () => {
-  const classes = useStyles()
+  const { user, signOut } = useAuthContext()
 
   const [clients, setClients] = useState([])
 
-  const { user, signOut } = useAuthContext()
+  const classes = useStyles()
 
   useEffect(() => {
-    if (user && user.role === 'ADMIN') {
+    if (user.role === 'ADMIN') {
       api
         .get('clients')
         .then((response) => {
@@ -33,14 +33,13 @@ const Dashboard: React.FC = () => {
           alert(error)
         })
     }
-    // eslint-disable-next-line
-  }, [])
+  }, [user])
 
   return (
     <Container className={classes.dashboardPageContainer}>
       <Paper className={classes.paper}>
         <Box className={classes.titleBar}>
-          <Typography variant="h4">Olá, {user && user.name}</Typography>
+          <Typography variant="h4">Olá, {user.name}</Typography>
 
           <Link className={classes.link} onClick={signOut}>
             Sair
@@ -48,13 +47,11 @@ const Dashboard: React.FC = () => {
         </Box>
 
         <Box mt={3}>
-          {clients.length > 0 && <Typography variant="h6">Clientes</Typography>}
-          {clients &&
-            clients.map((client: client) => (
-              <Box key={client.id}>
-                <Typography>{client.name}</Typography>
-              </Box>
-            ))}
+          {clients.map((client: client) => (
+            <Box key={client.id}>
+              <Typography>{client.name}</Typography>
+            </Box>
+          ))}
         </Box>
       </Paper>
     </Container>

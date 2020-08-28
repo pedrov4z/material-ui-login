@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
@@ -11,7 +11,17 @@ const Routes: React.FC = () => {
 
   return(
     <BrowserRouter>
-      <Route exact path="/" component={signed ? Dashboard : Login} />
+      <Route exact path="/" component={Login}>
+        {signed && (
+          <Redirect to="/dashboard" />
+        )}
+      </Route>
+
+      <Route path="/dashboard" component={Dashboard}>
+        {!signed && (
+          <Redirect to="/" />
+        )}
+      </Route>
     </BrowserRouter>
   )
 }
