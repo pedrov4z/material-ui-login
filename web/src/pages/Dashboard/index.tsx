@@ -6,14 +6,9 @@ import { useAuthContext } from '../../contexts/AuthContext'
 
 import api from '../../services/api'
 
-import useStyles from './styles'
+import ClientsList from '../../components/ClientsList'
 
-interface client {
-  id: number
-  name: string
-  cnpj: string
-  contactInformation: object[]
-}
+import useStyles from './styles'
 
 const Dashboard: React.FC = () => {
   const { user, signOut } = useAuthContext()
@@ -46,13 +41,7 @@ const Dashboard: React.FC = () => {
           </Link>
         </Box>
 
-        <Box mt={3}>
-          {clients.map((client: client) => (
-            <Box key={client.id}>
-              <Typography>{client.name}</Typography>
-            </Box>
-          ))}
-        </Box>
+        {user.role === "ADMIN" && <ClientsList clients={clients} />}
       </Paper>
     </Container>
   )

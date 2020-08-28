@@ -2,14 +2,15 @@ import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   dashboardPageContainer: {
-    height: '100%',
+    minHeight: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: theme.spacing(2),
   },
 
   paper: {
-    width: '40%',
+    width: '50%',
     padding: theme.spacing(5),
     display: 'flex',
     justifyContent: 'center',
