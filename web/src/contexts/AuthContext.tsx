@@ -36,6 +36,8 @@ export const AuthProvider: React.FC = ({ children }) => {
       const name = localStorage.getItem('userName')
       const role = localStorage.getItem('role')
       const token = localStorage.getItem('token')
+
+      api.defaults.headers.Authorization = `Bearer ${token}`
       
       setUser({
         id, email, name, role
@@ -50,8 +52,8 @@ export const AuthProvider: React.FC = ({ children }) => {
   }
 
   function signOut() {
-    setToken('')
-    setUser(null)
+    localStorage.clear()
+    window.location.reload()
   }
 
   async function signIn(email: string, password: string, rememberMe: Boolean) {
@@ -73,6 +75,7 @@ export const AuthProvider: React.FC = ({ children }) => {
             }
             localStorage.setItem('token', token)
           }
+          api.defaults.headers.Authorization = `Bearer ${token}`
           setUser(user)
           setToken(token)
         }
