@@ -78,6 +78,7 @@ const StepOne: React.FC = () => {
             setNameError(validateName(e.target.value))
           }}
           helperText={nameError}
+          autoFocus
         />
       )}
       {legalPerson === 'juridical' && (

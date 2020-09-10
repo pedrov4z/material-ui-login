@@ -35,6 +35,7 @@ const PasswordReset: React.FC<PasswordResetProps> = ({ setModalOpen }) => {
         helperText="Funcionalidade em construção"
         type="email"
         label="E-mail"
+        autoFocus
       />
       <Button variant="contained" color="primary">
         Confirmar

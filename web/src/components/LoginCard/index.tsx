@@ -72,6 +72,7 @@ const LoginCard: React.FC<LoginCardProps> = (props) => {
           variant="outlined"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          autoFocus
         />
 
         <FormControl className={classes.passwordInput} variant="outlined">

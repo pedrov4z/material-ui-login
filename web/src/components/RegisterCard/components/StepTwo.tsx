@@ -34,6 +34,7 @@ const StepTwo: React.FC = (props) => {
         onChange={(e) => setEmail(e.target.value)}
         onBlur={(e) => setEmailError(validateEmail(e.target.value))}
         helperText={emailError}
+        autoFocus
       />
 
       <TextField

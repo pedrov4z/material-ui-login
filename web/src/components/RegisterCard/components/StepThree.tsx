@@ -58,6 +58,7 @@ const StepThree: React.FC = (props) => {
           error={passwordError !== ''}
           onChange={(e) => setPassword(e.target.value)}
           onBlur={(e) => setPasswordError(validatePassword(e.target.value))}
+          autoFocus
         />
         <FormHelperText>{passwordError}</FormHelperText>
       </FormControl>
